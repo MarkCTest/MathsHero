@@ -1,0 +1,72 @@
+.inventoryBackpack {
+	position:absolute;
+	top: 10px;
+	left: 25px;
+	}
+	
+.answerPotion {
+	position:absolute;
+	top: 60px;
+	left: 25px;
+	}
+
+.invItem1 {
+	position:absolute;
+	top: 90px;
+	left: 18px;
+	}
+	
+.invItem2 {
+	position:absolute;
+	top: 90px;
+	left: 83px;
+	}
+	
+.invItem3 {
+	position:absolute;
+	top: 90px;
+	left: 145px;
+	}
+	
+.invItem4 {
+	position:absolute;
+	top: 90px;
+	left: 212px;
+	}
+
+.coinPlatinum { position:absolute; top: 427px; left: 50px;}
+.coinGold {	position:absolute; top: 427px; left: 170px;}
+.coinSilver { position:absolute; top: 427px; left: 263px;}
+.coinCopper { position:absolute; top: 427px; left: 356px;}
+
+.invPlatinum {
+	position:absolute;
+	top: 428px;
+	left: 30px;
+	font-size: 20px;
+	color: #FFFFFF;
+	}	
+	
+.invGold {
+	position:absolute;
+	top: 428px;
+	left: 122px;
+	font-size: 20px;
+	color: #FFFFFF;
+	}	
+
+.invSilver {
+	position:absolute;
+	top: 428px;
+	left: 216px;
+	font-size: 20px;
+	color: #FFFFFF;
+	}
+	
+.invCopper {
+	position:absolute;
+	top: 428px;
+	left: 308px;
+	font-size: 20px;
+	color: #FFFFFF;
+	}	

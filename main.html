@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Math Hero</title>
+
+<link href="scripts/math-hero-style.css" rel="stylesheet" type="text/css" />
+<link href="scripts/inventory.css" rel="stylesheet" type="text/css" />
+
+<!-- Load the JavaScripts in order they are needed -->
+<script type="text/javascript" src="scripts/set-up.js"></script>
+<script type="text/javascript" src="scripts/function-library.js"></script>
+<script type="text/javascript" src="scripts/math-engine.js"></script>
+
+</head>
+
+<body>
+
+<script>
+/* 
+With thanks for stuff from:
+	
+	# Scripts
+	http://www.codingforums.com/javascript-programming/
+	https://www.hscripts.com/scripts/JavaScript/image-fall.php
+	
+	# Art
+	http://opengameart.org/content/32x32-fantasy-tileset
+		http://opengameart.org/content/fantasy-icon-pack-by-ravenmore-0
+	
+	http://www.flamingtext.co.uk/logo/Design-Fancy
+	http://www.turbosquid.com/
+	
+	# Music and SFX
+	http://opengameart.org/content/epic-fantasy-music
+		http://opengameart.org/content/fantasy-sound-effects-library
+		http://opengameart.org/content/sounds-for-open-dungeons
+		http://opengameart.org/content/dungeon-crawler-sound-effects
+		http://opengameart.org/content/rpg-sound-archive-attack-movement-hits
+		
+	http://www.matthewpablo.com/
+	http://soundfxcenter.com/
+
+*/
+
+
+</script>
+
+<!-- Create a table to show the coins -->
+
+<h2>&nbsp;&nbsp; M a t h s &nbsp; H e r o !</h2>
+
+<div name='coinTable'>
+
+  <table border='1' width='600' class='tabletext'>
+	<tr align='center'>
+		<td colspan="3">Your Coins (<script>document.write(totalExp);</script>)</td>
+	</tr>
+	
+	<tr align='center'>
+		<th width='100' class='gold'>Gold (x) 10</th>
+		<th width='100' class='silver'>Silver (-) 5</th>
+		<th width='100' class='copper'>Copper (+) 5</th>
+	</tr>
+	
+	<tr align='center'>
+		<td id='gold' class='gold'><script>document.write(localStorage.getItem("goldCoins"));</script></td>
+		<td id='silver' class='silver'><script>document.write(localStorage.getItem("silverCoins"));</script></td>
+		<td id='copper' class='copper'><script>document.write(localStorage.getItem("copperCoins"));</script></td>
+	</tr>
+  </table>
+  
+</div>
+
+<!-- Call the ANSWER FORM and add it to the page -->
+<div id='theForm' style="position: absolute; left: 20px; top: 160px;">
+	<script>
+		formMaker(); // call the form for the user to fill in
+	</script>
+</div>
+
+
+<!-- Add the MOB image to the page -->
+<div id='theMob' style="position: absolute; left: 30px; top: 290px;">
+    
+	<script>
+	    mobCaller(); // Call the current mob or a new one if it dies
+    </script>
+
+</div>
+
+<!-- Add the EQUIPMENT and SHOP icons to the page -->
+<div id='theInventory' style="position: absolute; left: 260px; top: 160px;">
+  
+		<!-- Start Overlay -->
+		<div id="overlay"></div>
+		<!-- End Overlay -->
+
+		<!-- Start Special Centered Box -->
+		<div id="inventoryWindow">
+		  <img src='images/inventory-solo-bg-blank.png'>
+		  
+		  <img src='images/icon-potion-answer.jpg' width='64' height='64' alt='Answer Potion' title='Answer Potion' name='Answer Potion' class='invItem1'>
+		  <img src='images/icon-chest.jpg' width='64' height='64' alt='Iron Chest Plate' title='Iron Chest Plate' name='Iron Chest Plate' class='invItem2'>
+		  <img src='images/icon-head.jpg' width='64' height='64' alt='Iron Helm' title='Iron Helm' name='Iron Helm' class='invItem3'>
+		  <img src='images/icon-tome.jpg' width='64' height='64' alt='Book' title='Book' name='Book' class='invItem4'>
+
+			<span class='invPlatinum'><script>document.write(localStorage.getItem("platinumCoins"));</script></span>
+			<span class='invGold'><script>document.write(localStorage.getItem("goldCoins"));</script></span>
+			<span class='invSilver'><script>document.write(localStorage.getItem("silverCoins"));</script></span>
+			<span class='invCopper'><script>document.write(localStorage.getItem("copperCoins"));</script></span>
+		
+		<span class='coinGold'><img src='images/temp-gold-coin.png' width='30' height='30' title='Gold'></span>
+		<span class='coinSilver'><img src='images/temp-silver-coin.png' width='30' height='30' title='Silver'></span>
+		<span class='coinCopper'><img src='images/temp-copper-coin.png' width='30' height='30' title='Copper'></span>		
+		
+		<button onmousedown="toggleOverlay()">Close Inventory</button>
+		</div>
+		<!-- End Special Centered Box -->
+
+	<script>
+	    inventoryLink(); // Call the player inventory and shop icons, with links
+    </script>
+
+</div>
+
+
+
+<!-- Place the HERO image on the page-->
+<!-- Change to a JSON set later -->
+<div id='theHero' style="position: absolute; left: 350px; top: 160px;">
+	<img src='images/hero-001.jpg' width='250' height='340'/>
+</div>
+
+<!-- Place the LEVEL BANNER on the page -->
+<div id='levelbanner' style="position: absolute; left: 370px; top: 510px;">
+	<script>
+		playerLevelChooser(); //decide which player level image should be displayed
+	</script>
+</div>
+
+<!-- Add the EXP and HP bars under the Level Banner -->
+<div id='expBar' style="position: absolute; left: 340px; top: 570px;">
+	<script>
+		document.write("<b>EXP</b>: <progress id='exp' class='exp' value='" + totalExp + "' max='" + gameLevelControl[(localStorage.getItem("playerLevel"))-1].levelExperience + "'></progress>");
+	</script>
+</div>
+
+<div id='hpBar' style="position: absolute; left: 347px; top: 590px;">
+	<script>
+		document.write("<b>HP</b>: <progress id='hp' class='hp' value='" + currentHP + "' max='" + gameLevelControl[(localStorage.getItem("playerLevel"))-1].heroStartingHP + "'></progress>");
+	</script>
+</div>
+
+<div id='resetForm' style="position: absolute; left: 50px; top: 570px;">
+	<script>
+		document.write("<form name='resetForm'>");
+		document.write("<p><button name='reset' onclick='resetTheGame()')>Reset the Game</button></p>");
+		document.write("</form>");
+	</script>
+</div>
+
+</body>
+</html>

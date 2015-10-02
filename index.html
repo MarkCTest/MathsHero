@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Maths Hero</title>
+
+<!-- Load the global Style Sheet -->
+<link href="scripts/math-hero-style.css" rel="stylesheet" type="text/css" />
+<link href="scripts/inventory.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+<p>
+	<!-- Have the music control in the outer page to ensure it doesn't restart every question / page refresh -->
+	<script>
+
+//...............................................................
+// 07-Jun: Moved the PlayerLevel check to here from 'scripts/set-up.js' to see if the correct song will play on load up
+		// Set the LEVEL to 1 if the player is new or to the previous value if played before
+		if (localStorage.getItem("playerLevel") === null) {
+			localStorage.setItem("playerLevel", 1);
+		};
+//...............................................................
+	
+		if (localStorage.getItem("playerLevel") === "1") {
+			document.write("<audio src='music/heroic-demise.mp3' autoplay='true' loop='true' controls></audio>");
+		} else { //it must be above 1
+			document.write("<audio src='music/soliloquy.mp3' autoplay='true' loop='true' controls></audio>");
+		};
+	</script>
+	
+<a href='bestiary.html' target='new'>Bestiary</a>  |  
+<a href='change-notes.html' target='new'>Change Notes</a>
+</p>
+
+<iframe id='main-page' src='main.html' height='620' width='640'></iframe>
+<iframe id='change-notes' src='change-notes.html' height='620' width='640'></iframe>
+	
+</body>
+</html>
